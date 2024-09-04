@@ -1,4 +1,4 @@
-from pydantic import BaseModel, PositiveFloat, PositiveInteger, EmailStr, validator, Field
+from pydantic import BaseModel, PositiveFloat, EmailStr, validator, Field
 from enum import Enum
 from datetime import datetime
 from typing import Optional
@@ -8,7 +8,7 @@ class ProductBase(BaseModel):
     description: str
     price: PositiveFloat
     category: str
-    email_fornecedor = EmailStr
+    email_fornecedor: EmailStr
 
 class ProductCreate(ProductBase):
     pass
@@ -21,9 +21,8 @@ class ProductResponse(ProductBase):
         from_attributes = True
 
 class ProductUpdate(BaseModel):
-    id = int
     name: Optional[str] = None
     description: Optional[str] = None
     price: Optional[PositiveFloat] = None
     category: Optional[str] = None
-    email_fornecedor = Optional[EmailStr]
+    email_fornecedor: Optional[EmailStr] = None
